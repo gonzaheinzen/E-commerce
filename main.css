@@ -1,0 +1,45 @@
+h1,h2,h3,h4,h5,h6,p,div,label,span {
+   font-family: "Poppins", sans-serif !important;/*  Important para hacer un override de bootstrap */
+    color: #212121;
+}
+
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container {
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 48px; 
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
