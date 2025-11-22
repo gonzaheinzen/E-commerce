@@ -18,7 +18,7 @@ function renderProducts(products) {
     div.innerHTML = `
     <div class="card h-100 product-card" data-index="${index}">
       <div class="product-image-container">
-        <img src="${product.image}" class="card-img-top product-image" alt="${product.title}">
+        <img src="${product.image}" class="card-img-top product-image" alt="${product.title}" >
       </div>
       <div class="card-body d-flex flex-column">
         <p class="card-text text-muted mb-1">${product.category}</p>
