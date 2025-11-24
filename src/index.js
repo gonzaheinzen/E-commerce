@@ -8,7 +8,7 @@ import {
   getCart       
 } from "./services/carrito.service.js";
 
-import { filterProducts } from "./services/product.service.js";
+import { filterProducts } from "./services/products.service.js";
 import { showSuccessAlert, showErrorAlert } from "./utils/alerts.util.js";
 
 // Inicializamos la instancia del modal de Bootstrap de forma global
