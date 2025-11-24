@@ -1,4 +1,5 @@
 
+
 export class LocalStorageHandler{
 
     saveItem(key, item){
@@ -6,7 +7,9 @@ export class LocalStorageHandler{
     }
 
     getItem(key){
-        return JSON.parse(localStorage.getItem(key));
+        // Retorna null si no existe, o parsea el objeto
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : null;
     }
 
     removeItem(key){
