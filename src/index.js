@@ -23,6 +23,7 @@ let checkoutForm = document.getElementById("checkout-form");
 let goToCheckoutBtn = document.getElementById("goToCheckoutBtn");
 let backToHomeBtn = document.getElementById("backToHomeBtn");
 let searchForm = document.querySelector("form.d-flex");
+let homeBtns = document.querySelectorAll(".home-btn");
 
 // Referencia a la sección de Categorías Populares (para ocultarla en checkout)
 const popularCategoriesSection = document.querySelector('.container.py-5 .row.text-center').closest('section');
@@ -106,11 +107,19 @@ searchForm.addEventListener("submit", (e) => {
     
     // Usar la función importada y pasar el array 'products'
     const filteredProducts = filterProducts(products, searchTerm); 
+
+    const heroSection = document.querySelector('.hero-section');
+    const categorySection = document.querySelector('.category-section');
+    const titleProductSection = document.querySelector('.title-product-section');
+
+
+
+    heroSection.classList.add('d-none');
+    categorySection.classList.add('d-none');
+    titleProductSection.textContent = 'Resultados';
+
     
     renderProducts(filteredProducts);
-    
-    // Limpiar el campo de búsqueda
-    searchInput.value = ''; 
     
     if (filteredProducts.length === 0) {
         showErrorAlert(`No se encontraron productos que coincidan con "${searchTerm}".`);
@@ -201,6 +210,16 @@ function showCheckout() {
 // ===============================
 // MANEJO DE EVENTOS INICIALES
 // ===============================
+
+// Evento: Click en los botones Viste o Inicio
+homeBtns.forEach(btn =>{
+  btn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    showHome();
+  })
+})
+
+
 
 // Evento: Abrir Modal (Click en cualquier parte de la tarjeta, excepto el botón)
 document.addEventListener("click", (e) => {
