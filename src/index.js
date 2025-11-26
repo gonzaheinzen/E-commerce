@@ -99,7 +99,7 @@ function openProductModal(product) {
 // LÓGICA DE BÚSQUEDA
 // ===============================
 
-searchForm.addEventListener("submit", (e) => {
+searchForm.addEventListener("input", (e) => {
     e.preventDefault(); 
     
     const searchInput = searchForm.querySelector('input[type="search"]');
@@ -122,7 +122,7 @@ searchForm.addEventListener("submit", (e) => {
     renderProducts(filteredProducts);
     
     if (filteredProducts.length === 0) {
-        showErrorAlert(`No se encontraron productos que coincidan con "${searchTerm}".`);
+      titleProductSection.textContent = 'No se encontraron resultados'
     }
 });
 
