@@ -29,9 +29,7 @@ let homeBtns = document.querySelectorAll(".home-btn");
 const popularCategoriesSection = document.querySelector('.container.py-5 .row.text-center').closest('section');
 
 
-// ===============================
-// LÓGICA DE PRODUCTOS Y RENDERIZADO
-// ===============================
+//=====>>> LÓGICA DE PRODUCTOS Y RENDERIZADO
 
 function renderProducts(productsToRender) {
   productList.innerHTML = "";
@@ -95,9 +93,7 @@ function openProductModal(product) {
 }
 
 
-// ===============================
-// LÓGICA DE BÚSQUEDA
-// ===============================
+//=====>>> LÓGICA DE BÚSQUEDA
 
 searchForm.addEventListener("input", (e) => {
     e.preventDefault(); 
@@ -127,9 +123,7 @@ searchForm.addEventListener("input", (e) => {
 });
 
 
-// ===============================
-// LÓGICA DE CHECKOUT
-// ===============================
+//=====>>> LÓGICA DE CHECKOUT
 
 function renderCheckoutSummary() {
     const cartItems = getCart();
@@ -166,7 +160,7 @@ function renderCheckoutSummary() {
     totalLi.classList.add("list-group-item", "d-flex", "justify-content-between", "fw-bold", "bg-light");
     totalLi.innerHTML = `
         <span>Total (USD)</span>
-        <strong>$${getCartTotal()}</strong>
+        <b>$${getCartTotal()}</b>
     `;
     cartSummary.appendChild(totalLi);
 }
@@ -207,9 +201,7 @@ function showCheckout() {
     window.scrollTo(0, 0); 
 }
 
-// ===============================
-// MANEJO DE EVENTOS INICIALES
-// ===============================
+//=====>>> MANEJO DE EVENTOS INICIALES
 
 // Evento: Click en los botones Viste o Inicio
 homeBtns.forEach(btn =>{
@@ -218,6 +210,28 @@ homeBtns.forEach(btn =>{
     showHome();
   })
 })
+
+//=====>>> FILTRO POR CATEGORIA
+
+document.querySelectorAll(".category-link").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const category = link.dataset.category;
+
+    const filtered = products.filter(p => 
+      p.category.toLowerCase().includes(category.toLowerCase())
+    );
+
+    document.querySelector('.hero-section').classList.add('d-none');
+    document.querySelector('.category-section').classList.add('d-none');
+    document.querySelector('.title-product-section').textContent = 
+      `${link.textContent}`;
+
+    renderProducts(filtered);
+  });
+});
+
 
 
 
@@ -260,7 +274,7 @@ checkoutForm.addEventListener("submit", (e) => {
     }
     
     // Simulación de pago
-    showSuccessAlert("🎉 ¡Pago realizado con éxito! Su pedido está siendo procesado.");
+    showSuccessAlert("¡Pago realizado con éxito! Su pedido está siendo procesado.");
     clearCart(); 
     showHome(); 
     checkoutForm.classList.remove('was-validated'); 

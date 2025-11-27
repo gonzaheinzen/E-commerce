@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Viste - Tienda</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -69,9 +69,47 @@
                   Categorías
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Hombre</a></li>
-                  <li><a class="dropdown-item" href="#">Mujer</a></li>
-                  <li><a class="dropdown-item" href="#">Niños</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item category-link"
+                      data-category="men"
+                      href="#"
+                      >Hombre</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item category-link"
+                      data-category="women"
+                      href="#"
+                      >Mujer</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item category-link"
+                      data-category="kids"
+                      href="#"
+                      >Niños</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item category-link"
+                      data-category="electronics"
+                      href="#"
+                      >Electronica</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item category-link"
+                      data-category="jewelery"
+                      href="#"
+                      >Joyeria</a
+                    >
+                  </li>
+
                   <li><hr class="dropdown-divider" /></li>
                   <li>
                     <a class="dropdown-item" href="#">Todos los productos</a>
@@ -114,13 +152,17 @@
     </header>
 
     <main>
-      <section class="hero-section text-white text-center d-flex align-items-center justify-content-center">
+      <section
+        class="hero-section text-white text-center d-flex align-items-center justify-content-center"
+      >
         <div class="container">
           <h1 class="display-4 fw-bold text-white">Colección de Verano</h1>
           <p class="lead text-white">
             Descubre las últimas tendencias para esta temporada.
           </p>
-          <a href="#product-section" class="btn btn-light btn-lg">Comprar ahora</a>
+          <a href="#product-section" class="btn btn-light btn-lg"
+            >Comprar ahora</a
+          >
         </div>
       </section>
 
@@ -173,80 +215,135 @@
       </section>
 
       <section class="container py-5" id="product-section">
-        <h2 class="text-center mb-4 title-product-section">Nuestros Productos</h2>
-        <div class="row g-4" id="product-list">
-          </div>
+        <h2 class="text-center mb-4 title-product-section">
+          Nuestros Productos
+        </h2>
+        <div class="row g-4" id="product-list"></div>
       </section>
 
       <section class="container py-5 d-none" id="checkout-section">
-          <h2 class="text-center mb-4">Finalizar Compra</h2>
-          <div class="row g-5">
-              
-              <div class="col-md-5 col-lg-4 order-md-last">
-                  <h4 class="d-flex justify-content-between align-items-center mb-3">
-                      <span class="text-muted">Tu Carrito</span>
-                      <span id="checkout-count" class="badge bg-dark rounded-pill">0</span>
-                  </h4>
-                  <ul class="list-group mb-3" id="checkout-cart-summary">
-                      </ul>
-                  <button class="btn btn-outline-dark btn-sm mb-4" id="backToHomeBtn">
-                      <i class="bi bi-arrow-left"></i> Seguir comprando
-                  </button>
-              </div>
-              
-              <div class="col-md-7 col-lg-8">
-                  <h4 class="mb-3">Información de Envío</h4>
-                  <form id="checkout-form" class="needs-validation" novalidate>
-                      <div class="row g-3">
-                          <div class="col-sm-6">
-                              <label for="firstName" class="form-label">Nombre</label>
-                              <input type="text" class="form-control" id="firstName" required>
-                              <div class="invalid-feedback">Se requiere un nombre válido.</div>
-                          </div>
-                          <div class="col-sm-6">
-                              <label for="lastName" class="form-label">Apellido</label>
-                              <input type="text" class="form-control" id="lastName" required>
-                              <div class="invalid-feedback">Se requiere un apellido válido.</div>
-                          </div>
-                          <div class="col-12">
-                              <label for="email" class="form-label">Email <span class="text-muted">(Opcional)</span></label>
-                              <input type="email" class="form-control" id="email" placeholder="tu@ejemplo.com">
-                              <div class="invalid-feedback">Ingrese un email válido.</div>
-                          </div>
-                          <div class="col-12">
-                              <label for="address" class="form-label">Dirección</label>
-                              <input type="text" class="form-control" id="address" placeholder="Calle Falsa 123" required>
-                              <div class="invalid-feedback">Ingrese una dirección de envío.</div>
-                          </div>
-                      </div>
-
-                      <hr class="my-4">
-
-                      <h4 class="mb-3">Pago</h4>
-                      <div class="my-3">
-                          <div class="form-check">
-                              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                              <label class="form-check-label" for="credit">Tarjeta de Crédito</label>
-                          </div>
-                          <div class="form-check">
-                              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                              <label class="form-check-label" for="debit">Tarjeta de Débito</label>
-                          </div>
-                          <div class="form-check">
-                              <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                              <label class="form-check-label" for="paypal">PayPal</label>
-                          </div>
-                      </div>
-                      <div class="invalid-feedback">Seleccione un método de pago.</div>
-
-                      <hr class="my-4">
-
-                      <button class="w-100 btn btn-dark btn-lg" type="submit">Pagar Ahora</button>
-                  </form>
-              </div>
+        <h2 class="text-center mb-4">Finalizar Compra</h2>
+        <div class="row g-5">
+          <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="text-muted">Tu Carrito</span>
+              <span id="checkout-count" class="badge bg-dark rounded-pill"
+                >0</span
+              >
+            </h4>
+            <ul class="list-group mb-3" id="checkout-cart-summary"></ul>
+            <button class="btn btn-outline-dark btn-sm mb-4" id="backToHomeBtn">
+              <i class="bi bi-arrow-left"></i> Seguir comprando
+            </button>
           </div>
+
+          <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Información de Envío</h4>
+            <form id="checkout-form" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="firstName" class="form-label">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Se requiere un nombre válido.
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label for="lastName" class="form-label">Apellido</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Se requiere un apellido válido.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label"
+                    >Email <span class="text-muted">(Opcional)</span></label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="tu@ejemplo.com"
+                  />
+                  <div class="invalid-feedback">Ingrese un email válido.</div>
+                </div>
+                <div class="col-12">
+                  <label for="address" class="form-label">Dirección</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    placeholder="Calle Falsa 123"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Ingrese una dirección de envío.
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4" />
+
+              <h4 class="mb-3">Pago</h4>
+              <div class="my-3">
+                <div class="form-check">
+                  <input
+                    id="credit"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    checked
+                    required
+                  />
+                  <label class="form-check-label" for="credit"
+                    >Tarjeta de Crédito</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="debit"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    required
+                  />
+                  <label class="form-check-label" for="debit"
+                    >Tarjeta de Débito</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="paypal"
+                    name="paymentMethod"
+                    type="radio"
+                    class="form-check-input"
+                    required
+                  />
+                  <label class="form-check-label" for="paypal">PayPal</label>
+                </div>
+              </div>
+              <div class="invalid-feedback">Seleccione un método de pago.</div>
+
+              <hr class="my-4" />
+
+              <button class="w-100 btn btn-dark btn-lg" type="submit">
+                Pagar Ahora
+              </button>
+            </form>
+          </div>
+        </div>
       </section>
-      </main>
+    </main>
 
     <footer class="bg-dark text-white pt-5 pb-4" id="footer">
       <div class="container text-center text-md-start">
@@ -278,8 +375,12 @@
             <p class="text-white">
               <i class="bi bi-geo-alt-fill me-2"></i> Buenos Aires, Argentina
             </p>
-            <p class="text-white"><i class="bi bi-envelope-fill me-2"></i> contacto@viste.com</p>
-            <p class="text-white"><i class="bi bi-telephone-fill me-2"></i> +54 11 1234 5678</p>
+            <p class="text-white">
+              <i class="bi bi-envelope-fill me-2"></i> contacto@viste.com
+            </p>
+            <p class="text-white">
+              <i class="bi bi-telephone-fill me-2"></i> +54 11 1234 5678
+            </p>
           </div>
         </div>
 
@@ -387,23 +488,26 @@
       </div>
 
       <div class="offcanvas-body d-flex flex-column">
-          <div id="cart-items" class="d-flex flex-column gap-3 flex-grow-1 overflow-auto"></div>
-          
-          <div class="mt-auto pt-3 border-top">
-              <h5 class="fw-bold d-flex justify-content-between">
-                  <span>Total:</span>
-                  <span id="cart-total" class="text-success">$0.00</span>
-              </h5>
-              <button 
-                class="btn btn-dark w-100 mt-2" 
-                data-bs-dismiss="offcanvas" 
-                id="goToCheckoutBtn"
-              >
-                  Ir a pagar
-              </button>
-          </div>
+        <div
+          id="cart-items"
+          class="d-flex flex-column gap-3 flex-grow-1 overflow-auto"
+        ></div>
+
+        <div class="mt-auto pt-3 border-top">
+          <h5 class="fw-bold d-flex justify-content-between">
+            <span>Total:</span>
+            <span id="cart-total" class="text-success">$0.00</span>
+          </h5>
+          <button
+            class="btn btn-dark w-100 mt-2"
+            data-bs-dismiss="offcanvas"
+            id="goToCheckoutBtn"
+          >
+            Ir a pagar
+          </button>
+        </div>
       </div>
-      </div>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
