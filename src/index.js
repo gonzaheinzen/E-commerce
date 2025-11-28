@@ -261,7 +261,7 @@ document.addEventListener("click", (e) => {
 goToCheckoutBtn.addEventListener("click", showCheckout);
 
 // Evento: Botón Eliminar todos los productos (del carrito)
-deleteAllCartProducts.addEventListener("click", ()=>{
+deleteAllCartProducts.addEventListener("click", async ()=>{
   
   const cart = getCart();
 
@@ -269,6 +269,11 @@ deleteAllCartProducts.addEventListener("click", ()=>{
     return showErrorAlert("No hay productos en el carrito.");
   }
   
+
+  let result = await showConfirmAlert("Vaciar carrito", "¿Seguro que querés eliminar todos los productos del carrito?");
+
+  if(!result) return;
+
   clearCart();
   showSuccessAlert("Eliminaste todos los productos del carrito.");
 
