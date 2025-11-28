@@ -15,7 +15,7 @@ import { showSuccessAlert, showErrorAlert, showConfirmAlert } from "./utils/aler
 const productModal = new bootstrap.Modal(document.getElementById("productModal"));
 
 // 1. Cargar productos de forma asíncrona al inicio
-let products = await getProducts();
+let products = await getProducts(); //
 
 // Obtener referencias a elementos del DOM
 let productList = document.getElementById("product-list");
@@ -85,7 +85,7 @@ function openProductModal(product) {
     "#modal-product-rating .rating-text"
   ).textContent = `${product.rating.rate} (${product.rating.count})`;
   document.querySelector("#productModal button.btn-dark").onclick = () => {
-    addToCart(product);
+    addToCart(product); //
     productModal.hide();
     showSuccessAlert(`${product.title} se ha añadido al carrito.`);
   };
@@ -103,7 +103,7 @@ searchForm.addEventListener("input", (e) => {
     const searchTerm = searchInput.value;
     
     // Usar la función importada y pasar el array 'products'
-    const filteredProducts = filterProducts(products, searchTerm); 
+    const filteredProducts = filterProducts(products, searchTerm); //
 
     const heroSection = document.querySelector('.hero-section');
     const categorySection = document.querySelector('.category-section');
@@ -127,12 +127,12 @@ searchForm.addEventListener("input", (e) => {
 //=====>>> LÓGICA DE CHECKOUT
 
 function renderCheckoutSummary() {
-    const cartItems = getCart();
+    const cartItems = getCart(); //
     const cartSummary = document.getElementById("checkout-cart-summary");
     cartSummary.innerHTML = "";
     
     // Contar items
-    document.getElementById("checkout-count").textContent = getCart().reduce((acc, item) => acc + item.quantity, 0);
+    document.getElementById("checkout-count").textContent = getCart().reduce((acc, item) => acc + item.quantity, 0); //
     
     const submitButton = checkoutForm.querySelector('button[type="submit"]');
 
@@ -182,7 +182,7 @@ function showHome() {
 }
 
 function showCheckout() {
-    if (getCartTotal() <= 0) {
+    if (getCartTotal() <= 0) { //
         showErrorAlert("El carrito está vacío. Agregue productos para continuar.");
         return;
     }
@@ -214,6 +214,7 @@ homeBtns.forEach(btn =>{
 
 //=====>>> FILTRO POR CATEGORIA
 
+// Filtro desde el menú de navegación (Dropdown)
 document.querySelectorAll(".category-link").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -233,7 +234,29 @@ document.querySelectorAll(".category-link").forEach(link => {
   });
 });
 
+// Filtro desde los botones "Ver más" en Categorías Populares (NUEVA FUNCIÓN)
+document.querySelectorAll(".category-btn").forEach(button => {
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
 
+    const category = button.dataset.category; // Obtiene la categoría del atributo data-category
+    
+    // Obtener el nombre de la categoría para el título
+    const categoryName = button.closest('.card-body').querySelector('.card-title').textContent;
+
+    const filtered = products.filter(p => 
+      p.category.toLowerCase().includes(category.toLowerCase())
+    );
+
+    document.querySelector('.hero-section').classList.add('d-none');
+    document.querySelector('.category-section').classList.add('d-none');
+    document.querySelector('.title-product-section').textContent = 
+      categoryName; // Establecer el título con el nombre de la categoría
+
+    renderProducts(filtered);
+    window.scrollTo(0, document.getElementById('product-section').offsetTop); // Desplazar a la sección de productos
+  });
+});
 
 
 // Evento: Abrir Modal (Click en cualquier parte de la tarjeta, excepto el botón)
@@ -252,7 +275,7 @@ document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-to-cart")) {
     const index = e.target.dataset.index;
     const product = products[index];
-    addToCart(product);
+    addToCart(product); //
     showSuccessAlert(`${product.title} se ha añadido al carrito.`);
   }
 });
@@ -263,20 +286,19 @@ goToCheckoutBtn.addEventListener("click", showCheckout);
 // Evento: Botón Eliminar todos los productos (del carrito)
 deleteAllCartProducts.addEventListener("click", async ()=>{
   
-  const cart = getCart();
+  const cart = getCart(); //
 
   if(cart.length === 0){
     return showErrorAlert("No hay productos en el carrito.");
   }
   
 
-  let result = await showConfirmAlert("Vaciar carrito", "¿Seguro que querés eliminar todos los productos del carrito?");
+  let result = await showConfirmAlert("Vaciar carrito", "¿Seguro que querés eliminar todos los productos del carrito?"); //
 
   if(!result) return;
 
-  clearCart();
+  clearCart(); //
   showSuccessAlert("Eliminaste todos los productos del carrito.");
-
 });
 
 // Evento: Botón "Seguir comprando"
@@ -289,13 +311,13 @@ checkoutForm.addEventListener("submit", (e) => {
     if (!checkoutForm.checkValidity()) {
         e.stopPropagation();
         checkoutForm.classList.add('was-validated');
-        showErrorAlert("Por favor, complete todos los campos requeridos.");
+        showErrorAlert("Por favor, complete todos los campos requeridos."); //
         return;
     }
     
     // Simulación de pago
-    showSuccessAlert("¡Pago realizado con éxito! Su pedido está siendo procesado.");
-    clearCart(); 
+    showSuccessAlert("¡Pago realizado con éxito! Su pedido está siendo procesado."); //
+    clearCart(); //
     showHome(); 
     checkoutForm.classList.remove('was-validated'); 
     checkoutForm.reset(); 
