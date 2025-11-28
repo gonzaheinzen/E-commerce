@@ -9,7 +9,7 @@ import {
 } from "./services/carrito.service.js";
 
 import { filterProducts } from "./services/products.service.js";
-import { showSuccessAlert, showErrorAlert } from "./utils/alerts.util.js";
+import { showSuccessAlert, showErrorAlert, showConfirmAlert } from "./utils/alerts.util.js";
 
 // Inicializamos la instancia del modal de Bootstrap de forma global
 const productModal = new bootstrap.Modal(document.getElementById("productModal"));
@@ -21,6 +21,7 @@ let products = await getProducts();
 let productList = document.getElementById("product-list");
 let checkoutForm = document.getElementById("checkout-form");
 let goToCheckoutBtn = document.getElementById("goToCheckoutBtn");
+let deleteAllCartProducts = document.getElementById("deleteAllCartProducts");
 let backToHomeBtn = document.getElementById("backToHomeBtn");
 let searchForm = document.querySelector("form.d-flex");
 let homeBtns = document.querySelectorAll(".home-btn");
@@ -258,6 +259,20 @@ document.addEventListener("click", (e) => {
 
 // Evento: Botón "Ir a pagar"
 goToCheckoutBtn.addEventListener("click", showCheckout);
+
+// Evento: Botón Eliminar todos los productos (del carrito)
+deleteAllCartProducts.addEventListener("click", ()=>{
+  
+  const cart = getCart();
+
+  if(cart.length === 0){
+    return showErrorAlert("No hay productos en el carrito.");
+  }
+  
+  clearCart();
+  showSuccessAlert("Eliminaste todos los productos del carrito.");
+
+});
 
 // Evento: Botón "Seguir comprando"
 backToHomeBtn.addEventListener("click", showHome);
